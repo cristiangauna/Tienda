@@ -36,7 +36,7 @@ const products = [
     id: 1,
     title: "Notebook",
     description: "Windows 11",
-    price: "$" + 707.999,
+    price: 707.999,
     image: img,
     descuentoMensaje: "  Descuento",
   },
@@ -44,7 +44,7 @@ const products = [
     id: 2,
     title: "Parlante",
     description: "Torre de sonido",
-    price: "$" + 349.999,
+    price: 349.999,
     image: img2,
     esFavorito: true,
   },
@@ -52,14 +52,14 @@ const products = [
     id: 3,
     title: "Smart Tv",
     description: "Led",
-    price: "$" + 328.999,
+    price: 328.999,
     image: img3,
   },
   {
     id: 4,
     title: "Lavarropas",
     description: "Carga Superior",
-    price: "$" + 289.999,
+    price: 289.999,
     image: img4,
     descuentoMensaje: "  Descuento",
   },
@@ -94,7 +94,7 @@ function App() {
               title={product.title}
               description={product.description}
               image={product.image}
-              price={product.price}
+              price={"$" + product.price}
               mensaje={product.descuentoMensaje}
               esFavorito={product.esFavorito}
             />
@@ -107,7 +107,7 @@ function App() {
               title={product.title}
               description={product.description}
               image={product.image}
-              price={product.price}
+              price={"$" + product.price}
               mensaje={product.descuentoMensaje}
               esFavorito={product.esFavorito}
             />
