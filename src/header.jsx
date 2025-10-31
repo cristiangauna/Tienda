@@ -33,7 +33,7 @@ function Header() {
                     <button className={styles.iconButton} aria-label="Carrito">
                         <div className={styles.cartIconWrapper}>
                             <ShoppingCart size={24} />
-                            <span className={styles.cartBadge}>{0}</span>
+                            <span className={styles.cartBadge}>{}</span>
                         </div>
                         <span className={styles.iconLabel}>Carrito</span>
                     </button>
