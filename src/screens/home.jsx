@@ -80,7 +80,7 @@ function Home() {
                         image={product.images[0]}
                         price={"$" + product.price + 999}
                         //mensaje={product.descuentoMensaje}
-                        //esFavorito={product.esFavorito}
+                        //esFavorito={product.esFavorito}//
                         setTotalProductsInCart={setTotalProductsInCart}
                         />
                     ))}
