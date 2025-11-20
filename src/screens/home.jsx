@@ -52,7 +52,7 @@ function Home() {
 
                 {!productsError && products?.length > 0 && (
                 <ProductList title="DESTACADOS:">
-                    {products.slice(24, 28).map((product) => (
+                    {products.slice(2, 6).map((product) => (
                         <ProductCard
                         key={product.id}
                         title={product.title}
@@ -72,7 +72,7 @@ function Home() {
                 
                 {!productsError && products?.length > 0 && (
                 <ProductList title="Podria Interesarte:">
-                    {products.slice(20, 24).map((product) => (
+                    {products.slice(6, 10).map((product) => (
                         <ProductCard
                         key={product.id}
                         title={product.title}
