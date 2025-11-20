@@ -8,6 +8,7 @@ function ProductCard(props) {
 
   function handleClick(text){
     console.log("click", text);
+    props.setTotalProductsInCart((prevState) => prevState + 1);
     setCount(count + 1);
   }
 
@@ -40,8 +41,8 @@ function ProductCard(props) {
           <ShoppingCart size={20} />
           Añadir al carrito
         </button>
-        {count > 0 && count <2 && <p>{count + " Añadido al carrito"}</p>}
-        {count > 1 && <p>{count + " Añadidos al carrito"}</p>}
+        {count > 0 && count <2 && <p>{count + " Añadido al carrito correctamente"}</p>}
+        {count > 1 && <p>{count + " Añadidos al carrito correctamente"}</p>}
         <div>{props.esFavorito ? "❤️" : "🤍"}</div>
       </div>
     </article>

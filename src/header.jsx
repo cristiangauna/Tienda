@@ -5,13 +5,13 @@ function Header(props) {
     const { cartCount } = props;
     return (  
             //<h1 style={{ color: "blue", background: "red" }}>Info store</h1>  
-            //Doble llave porque una es para el portal
+            //Doble llave por que una es para el portal
             //Y otra para crear un objeto
             //si pones una sola llave tratara de leer una expresion que no existe, como por ejemplo el numero 34
         <header className={styles.header}>
             <div className={styles.container}>
                 <div className={styles.logo}>
-                    <h1 className={styles.title}>Tienda</h1>
+                    <h1 className={styles.title}>Tienda!</h1>
                 </div>
 
                 <nav className={styles.nav}>

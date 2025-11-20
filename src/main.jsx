@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 //import ProductCard from "./product-cart.jsx";
-import App from "./app.jsx";
+import App from "./app";
 //import Header from "./header.jsx";
 import "./normalize.css";
 import "./variables.css";
@@ -36,4 +36,8 @@ import { StrictMode } from "react";
 // Render
 const container = document.querySelector("#root");
 const root = ReactDOM.createRoot(container);
-root.render(<App />);
+root.render(
+    <StrictMode>
+        <App />
+    </StrictMode>,
+);
