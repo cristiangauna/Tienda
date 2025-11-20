@@ -1,7 +1,8 @@
 import styles from "./header.module.css";
 import { User, Heart, ShoppingCart } from "lucide-react";
 
-function Header() {
+function Header(props) {
+    const { cartCount } = props;
     return (  
             //<h1 style={{ color: "blue", background: "red" }}>Info store</h1>  
             //Doble llave por que una es para el portal
@@ -33,7 +34,7 @@ function Header() {
                     <button className={styles.iconButton} aria-label="Carrito">
                         <div className={styles.cartIconWrapper}>
                             <ShoppingCart size={24} />
-                            <span className={styles.cartBadge}>{}</span>
+                            <span className={styles.cartBadge}>{cartCount}</span>
                         </div>
                         <span className={styles.iconLabel}>Carrito</span>
                     </button>
