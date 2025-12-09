@@ -1,38 +1,23 @@
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
+import { login } from "../services/users";
+import { Link, Route, useNavigate } from "react-router";
+import { useAuth } from "../contexts/AuthContext";
 
 function Login() {
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
+  const { handleLogin } = useAuth();
 
 
-  const loginMutation = useMutation({
-  mutationFn: (user) => {
-    return fetch("https://api.escuelajs.co/api/v1/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(user),
-    });
-  },
-
-  onSuccess: (data) => {
-    if (data.status == 201) {
-      console.log("navegas a la home");
-    }
-
-    if (data.status == 400) {
-      setErrorMessage("credenciales incorrectas");
-    }
-  },
-});
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (e) => { //(e) es de evento
+    e.preventDefault(); // e de evento y preventDefault para evitar que refresque la pagina al presionar el boton iniciar sesion
     console.log("enviando datos", { email, password });
-    loginMutation.mutate(email);
+    //loginMutation.mutate(email);
+    handleLogin(email, password);
   };
 
 

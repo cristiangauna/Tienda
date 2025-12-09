@@ -11,10 +11,11 @@ import { productsKeys } from "../queries/products.js";
 import { getAllProducts } from "../services/products.js";
 import { categoryKeys } from "../queries/categories.js";
 import { getAllCategories } from "../services/categories.js";
+import { Link } from "react-router";
 
 function Home() {
 
-    const [totalProductInCart, setTotalProductsInCart] = useState(0);
+    //const [totalProductInCart, setTotalProductsInCart] = useState(0);
     //const [products, setProducts] = useState([]);
     //const { products, error, isLoading } = useFetchData();
     //const { data:products, error, isLoading } = useFetchData(`${BASE_URL}/products`);
@@ -31,7 +32,7 @@ function Home() {
 
     return(  
         <div>
-            <Header cartCount={totalProductInCart} />
+            <Header/> {/*cartCount={totalProductInCart}/> */} 
             <main className={styles.main}>
             {/*<section className={styles.section}>
                 <h2 className={styles.sectionTitle}>Productos Destacados</h2>
@@ -53,16 +54,18 @@ function Home() {
                 {!productsError && products?.length > 0 && (
                 <ProductList title="DESTACADOS:">
                     {products.slice(2, 6).map((product) => (
-                        <ProductCard
-                        key={product.id}
-                        title={product.title}
-                        description={product.description}
-                        image={product.images[0]}
-                        price={"$" + product.price + 999}
-                        //mensaje={product.descuentoMensaje}
-                        //esFavorito={product.esFavorito}
-                        setTotalProductsInCart={setTotalProductsInCart}
-                        />
+                        <Link to={`/products/${product.id}`}>
+                            <ProductCard
+                            key={product.id}
+                            title={product.title}
+                            description={product.description}
+                            image={product.images[0]}
+                            price={"$" + product.price + 999}
+                            //mensaje={product.descuentoMensaje}
+                            esFavorito={true}
+                            //setTotalProductsInCart={setTotalProductsInCart}
+                            />
+                        </Link>
                     ))}  
                 </ProductList>        
                 )}
@@ -73,16 +76,19 @@ function Home() {
                 {!productsError && products?.length > 0 && (
                 <ProductList title="Podria Interesarte:">
                     {products.slice(6, 10).map((product) => (
-                        <ProductCard
-                        key={product.id}
-                        title={product.title}
-                        description={product.description}
-                        image={product.images[0]}
-                        price={"$" + product.price + 999}
-                        //mensaje={product.descuentoMensaje}
-                        //esFavorito={product.esFavorito}
-                        setTotalProductsInCart={setTotalProductsInCart}
-                        />
+                        <Link to={`/products/${product.id}`}>
+                            <ProductCard
+                            key={product.id}
+                            title={product.title}
+                            description={product.description}
+                            image={product.images[0]}
+                            price={"$" + product.price + 999}
+                            //mensaje={product.descuentoMensaje}
+                            descuento={true}
+                            //esFavorito={product.esFavorito}
+                            //setTotalProductsInCart={setTotalProductsInCart}
+                            />
+                        </Link>
                     ))}
                 </ProductList> 
                 )}    
