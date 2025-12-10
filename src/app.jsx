@@ -17,9 +17,11 @@ import ProtectedRoute from "./protectedRoute";
 import { AuthProvider } from "./contexts/AuthContext";
 
 
+
 const queryClient = new QueryClient();
 
 export const CartContext = createContext();
+
 
 
 //const img = 
@@ -78,12 +80,25 @@ export const CartContext = createContext();
 
 // App en JSX
 
+
 function App() {
 
   const [cart, setCart] = useState();
 
+
   const irHome = <Link to="/home" className={styles.añadido}>Ir a la home 🛒</Link>;
-  const cerrarSesion = <Link to="/" className={styles.descuento}>Cerrar Sesión 🛒</Link>;
+  const cerrarSesion = <Link to="/" onClick={handleCerrarSesion} className={styles.descuento}>Cerrar Sesión 🛒</Link>;
+
+
+  function handleCerrarSesion(e) {
+    e.preventDefault(); // evita salir sin preguntar
+
+    const confirmar = window.confirm("¿Estás seguro que deseas cerrar sesión?");
+
+    if (confirmar) {
+      window.location.href = "/";
+    }
+  }
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -91,7 +106,7 @@ function App() {
         <BrowserRouter>  
           <AuthProvider>
             <Routes>
-              <Route path="/home" element={<> <Home /> <h1><Link to="/" className={styles.descuento}>Cerrar Sesión 🛒</Link></h1></>}/>
+              <Route path="/home" element={<> <Home /> <h1><Link to="/" onClick={handleCerrarSesion} className={styles.descuento}>Cerrar Sesión 🛒</Link></h1></>}/>
               <Route path="/" element={<><h1>BIENVENIDO AL LOGIN DE TIENDA 🛒</h1> <h5> - </h5><h4>INGRESAR CUENTA:</h4> <Login /> <h4>(Si no funciona la API ingresar con: Email: tienda@hotmail.com Contraseña: tienda123 )</h4>  {/*<Link to="/home" ><h3 className={styles.añadido}> Ingresar a la home como usuario registrado 🛒</h3></Link>*/}</>}/>
               <Route path="*" element={<><h1>404 not found</h1>{irHome}<h1> </h1>{cerrarSesion}</>} />             
               <Route path="/products/:id" element={<><ProductDetail /> {irHome} <h1> </h1> {cerrarSesion}</>} />
