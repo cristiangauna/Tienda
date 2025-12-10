@@ -15,6 +15,7 @@ import ProductDetail from "./screens/product-detail";
 import styles from "./app.module.css";
 import ProtectedRoute from "./protectedRoute";
 import { AuthProvider } from "./contexts/AuthContext";
+import Header from "./header";
 
 
 
@@ -90,6 +91,11 @@ function App() {
   const cerrarSesion = <Link to="/" onClick={handleCerrarSesion} className={styles.descuento}>Cerrar Sesión 🛒</Link>;
 
 
+  function rutaGeneral (link, h1) {
+    return <Route path={link} element={<> <Header/> <h1>{h1}</h1>{irHome}<h1> </h1>{cerrarSesion}</>} />  
+  };
+
+
   function handleCerrarSesion(e) {
     e.preventDefault(); // evita salir sin preguntar
 
@@ -100,6 +106,7 @@ function App() {
     }
   }
 
+  
   return (
     <QueryClientProvider client={queryClient}>
       <CartContext.Provider value={[cart, setCart]}>       
@@ -108,18 +115,18 @@ function App() {
             <Routes>
               <Route path="/home" element={<> <Home /> <h1><Link to="/" onClick={handleCerrarSesion} className={styles.descuento}>Cerrar Sesión 🛒</Link></h1></>}/>
               <Route path="/" element={<> <Login /> {/*<Link to="/home" ><h3 className={styles.añadido}> Ingresar a la home como usuario registrado 🛒</h3></Link>*/}</>}/>
-              <Route path="*" element={<><h1>404 not found</h1>{irHome}<h1> </h1>{cerrarSesion}</>} />             
-              <Route path="/products/:id" element={<><ProductDetail /> {irHome} <h1> </h1> {cerrarSesion}</>} />
+              {rutaGeneral("*", "404 not found")}           
+              <Route path="/products/:id" element={<><Header /> <ProductDetail /> {irHome} <h1> </h1> {cerrarSesion}</>} />
                         {/*products/:id, los dos puntos + alguna palabra es un comodin para que se rellene con cualquier cosa*/}
                 {/**/}
-              <Route path="/cuenta" element={<><h1>Cuenta Ingresada</h1>{irHome}<h1> </h1>{cerrarSesion}</>} />  
-              <Route path="/deseos" element={<><h1>Lista de deseos</h1>{irHome}<h1> </h1>{cerrarSesion}</>} />
-              <Route path="/carrito" element={<><h1>Carrito</h1>{irHome}<h1> </h1>{cerrarSesion}</>} />
-              <Route path="/inicio" element={<><h1>Inicio</h1>{irHome}<h1> </h1>{cerrarSesion}</>} />
-              <Route path="/productos" element={<><h1>Productos</h1>{irHome}<h1> </h1>{cerrarSesion}</>} />
-              <Route path="/categorias" element={<><h1>Categorías</h1>{irHome}<h1> </h1>{cerrarSesion}</>} />
-              <Route path="/ofertas" element={<><h1>Ofertas</h1>{irHome}<h1> </h1>{cerrarSesion}</>} />  
-              <Route path="/admin" element={<><ProtectedRoute><h1>Admin</h1></ProtectedRoute> {irHome}<h1> </h1>{cerrarSesion}</>} />
+              {rutaGeneral("/cuenta", "Cuenta Ingresada")}
+              {rutaGeneral("/deseos", "Lista de deseos")}  
+              {rutaGeneral("/carrito", "Carrito")}     
+              <Route path="/inicio" element={<><Home /> <h1><Link to="/" onClick={handleCerrarSesion} className={styles.descuento}>Cerrar Sesión 🛒</Link></h1></>} />
+              {rutaGeneral("/productos", "Productos")}
+              {rutaGeneral("/categorias", "Categorias")}
+              {rutaGeneral("/ofertas", "Ofertas")} 
+              <Route path="/admin" element={<><Header/> <ProtectedRoute><h1>Admin</h1></ProtectedRoute> {irHome}<h1> </h1>{cerrarSesion}</>} />
             
             </Routes>  
           </AuthProvider>          
@@ -130,3 +137,7 @@ function App() {
 }
 
 export default App;
+  
+
+  
+              
