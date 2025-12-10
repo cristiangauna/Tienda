@@ -13,7 +13,7 @@ import { categoryKeys } from "../queries/categories.js";
 import { getAllCategories } from "../services/categories.js";
 import { Link } from "react-router";
 
-function Home() {
+function Destacados() {
 
     //const [totalProductInCart, setTotalProductsInCart] = useState(0);
     //const [products, setProducts] = useState([]);
@@ -52,7 +52,7 @@ function Home() {
                 {productsIsPending && <p>Cargando...</p>}
 
                 {!productsError && products?.length > 0 && (
-                <ProductList title="DESTACADOS:">
+                <ProductList title="">
                     {products.slice(2, 6).map((product) => (
                         <Link to={`/products/${product.id}`}>
                             <ProductCard
@@ -73,7 +73,7 @@ function Home() {
                 
 
                 
-                {!productsError && products?.length > 0 && (
+                {/*{!productsError && products?.length > 0 && (
                 <ProductList title="Podria Interesarte:">
                     {products.slice(6, 10).map((product) => (
                         <Link to={`/products/${product.id}`}>
@@ -92,7 +92,7 @@ function Home() {
                     ))}
                 </ProductList> 
                 )}    
-                {productsError && <p>{productsError}</p>}
+                {productsError && <p>{productsError}</p>}*/}
 
                 {/*{categories?.length > 0 && categories.map((category) => {
                     return <p key={category.id}>{category.name}</p>
@@ -103,4 +103,4 @@ function Home() {
     )
 }
 
-export default Home;
+export default Destacados;

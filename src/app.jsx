@@ -12,11 +12,21 @@ import {createContext, useState} from "react";
 import { BrowserRouter, Routes, Route } from "react-router"
 import { Link } from "react-router";
 import ProductDetail from "./screens/product-detail";
+import styles from "./app.module.css";
+import ProtectedRoute from "./protectedRoute";
+import { AuthProvider } from "./contexts/AuthContext";
+import Header from "./header";
+import Destacados from "./screens/destacados";
+import Ofertas from "./screens/ofertas";
+import Carrito from "./screens/carrito";
+import Historial from "./screens/historial";
+
 
 
 const queryClient = new QueryClient();
 
 export const CartContext = createContext();
+
 
 
 //const img = 
@@ -75,28 +85,63 @@ export const CartContext = createContext();
 
 // App en JSX
 
+
 function App() {
 
-  const cartState = useState();
+  const [cart, setCart] = useState([]);
+
+
+  const irHome = <h1><Link to="/home" className={styles.añadido}>Ir a la home 🛒</Link></h1>;
+  const cerrarSesion = <h1><Link to="/" onClick={handleCerrarSesion} className={styles.descuento}>Cerrar Sesión 🛒</Link></h1>;
+
+
+  function rutaGeneral (link, h1) {
+    return <Route path={link} element={<> <Header/> <h1>{h1}</h1> {irHome} <h1> </h1> {cerrarSesion}</>} />  
+  };
+
+
+  function handleCerrarSesion(e) {
+    e.preventDefault(); // evita salir sin preguntar
+
+    const confirmar = window.confirm("¿Estás seguro que deseas cerrar sesión?");
+
+    if (confirmar) {
+      window.location.href = "/";
+    }
+  }
+
 
   return (
     <QueryClientProvider client={queryClient}>
-      <CartContext.Provider value={cartState}>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Home />}/>
-            <Route path="/login" element={<><Login /> <Link to="/">Ingresar a la home como usuario registrado</Link></>}/>
-            <Route path="*" element={<><h1>404 not found</h1><Link to="/">Volver a la home</Link></>} />             
-            <Route path="/products/:id" element={<><ProductDetail /> <Link to="/">Volver a la home</Link> </>} />
-                      {/*products/:id, los dos puntos + alguna palabra es un comodin para que se rellene con cualquier cosa*/}
-
-              {/**/}
+      <CartContext.Provider value={[cart, setCart]}>       
+        <BrowserRouter>  
+          <AuthProvider>
+            <Routes>
+              <Route path="/home" element={<> <Home /> {cerrarSesion}</>}/>
+              <Route path="/" element={<> <Login /> {/*<Link to="/home" ><h3 className={styles.añadido}> Ingresar a la home como usuario registrado 🛒</h3></Link>*/}</>}/>
+              {rutaGeneral("*", "404 not found")}           
+              <Route path="/products/:id" element={<><Header /> <ProductDetail /> {irHome} <h1> </h1> {cerrarSesion}</>} />
+                        {/*products/:id, los dos puntos + alguna palabra es un comodin para que se rellene con cualquier cosa*/}
+                {/**/}
+              {rutaGeneral("/cuenta", "Cuenta Ingresada")}
+              <Route path="/historial" element={<> <Header/> <Historial /> {irHome} {cerrarSesion}</>} />  
+              <Route path="/carrito" element={<> <Header/> <Carrito /> {irHome} {cerrarSesion}</>} />     
+              <Route path="/inicio" element={<><Home /> {cerrarSesion}</>} />
+              <Route path="/categorias" element={<> <Header/> <h1><Link to="/destacados" >⭐Destacados</Link></h1> <h1><Link to="/ofertas" >💲Ofertas</Link></h1>; {irHome} <h1> </h1> {cerrarSesion}</>} />  
+              <Route path="/destacados" element={<> <Destacados /> {irHome} {cerrarSesion}</>}/>
+              <Route path="/ofertas" element={<> <Ofertas /> {irHome} {cerrarSesion}</>}/>
+              <Route path="/admin" element={<><Header/> <ProtectedRoute><h1>Admin</h1></ProtectedRoute> {irHome}<h1> </h1>{cerrarSesion}</>} />
             
-          </Routes>  
-        </BrowserRouter>  
+            </Routes>  
+          </AuthProvider>          
+        </BrowserRouter>
       </CartContext.Provider>
     </QueryClientProvider>
   );
 }
 
 export default App;
+  
+
+  
+              
