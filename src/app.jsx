@@ -107,7 +107,7 @@ function App() {
           <AuthProvider>
             <Routes>
               <Route path="/home" element={<> <Home /> <h1><Link to="/" onClick={handleCerrarSesion} className={styles.descuento}>Cerrar Sesión 🛒</Link></h1></>}/>
-              <Route path="/" element={<><h1>BIENVENIDO AL LOGIN DE TIENDA 🛒</h1> <h5> - </h5><h4>INGRESAR CUENTA:</h4> <Login /> <h4>(Si no funciona la API ingresar con: Email: tienda@hotmail.com Contraseña: tienda123 )</h4>  {/*<Link to="/home" ><h3 className={styles.añadido}> Ingresar a la home como usuario registrado 🛒</h3></Link>*/}</>}/>
+              <Route path="/" element={<> <Login /> {/*<Link to="/home" ><h3 className={styles.añadido}> Ingresar a la home como usuario registrado 🛒</h3></Link>*/}</>}/>
               <Route path="*" element={<><h1>404 not found</h1>{irHome}<h1> </h1>{cerrarSesion}</>} />             
               <Route path="/products/:id" element={<><ProductDetail /> {irHome} <h1> </h1> {cerrarSesion}</>} />
                         {/*products/:id, los dos puntos + alguna palabra es un comodin para que se rellene con cualquier cosa*/}

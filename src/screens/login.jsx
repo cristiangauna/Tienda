@@ -21,31 +21,34 @@ function Login() {
     handleLogin(email, password);
   };
 
+  
 
   return (
-    <>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="email">Email:</label>
-        <input
-          value={email}
-          onChange={(e) => {
-              setEmail(e.target.value);            
-          }}
-          id="email"
-          type="email"
-        />
+  <div className={styles.container}>
+    <h1>BIENVENIDO AL LOGIN DE TIENDA 🛒</h1>
+    <h4>INGRESAR CUENTA:</h4>
+    <form className={styles.form} onSubmit={handleSubmit}>      
+      <label htmlFor="email">Email:</label>
+      <input
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        id="email"
+        type="email"
+      />
 
-        <label htmlFor="password">Contraseña:</label>
-        <input
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          id="password"
-          type="password"
-        />
-        <button className={styles.añadido}>iniciar sesión</button>
-      </form>
+      <label htmlFor="password">Contraseña:</label>
+      <input
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        id="password"
+        type="password"
+      />
       {errorMessage && <p className={styles.descuento}> {errorMessage}</p>}
-    </>
+      <button className={styles.añadido}>Iniciar sesión</button>
+    </form>    
+    <h4>(Si no funciona la API ingresar con: Email: tienda@hotmail.com Contraseña: tienda123 )</h4>
+
+  </div>
   );
 }
 
