@@ -3,14 +3,15 @@ import { useMutation } from "@tanstack/react-query";
 import { login } from "../services/users";
 import { Link, Route, useNavigate } from "react-router";
 import { useAuth } from "../contexts/AuthContext";
+import styles from "./login.module.css";
 
 function Login() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+  //const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
-  const { handleLogin } = useAuth();
+  const { handleLogin, errorMessage } = useAuth();
 
 
   const handleSubmit = (e) => { //(e) es de evento
@@ -41,9 +42,9 @@ function Login() {
           id="password"
           type="password"
         />
-        <button>iniciar sesión</button>
+        <button className={styles.añadido}>iniciar sesión</button>
       </form>
-      {errorMessage && <p>{errorMessage}</p>}
+      {errorMessage && <p className={styles.descuento}> {errorMessage}</p>}
     </>
   );
 }
