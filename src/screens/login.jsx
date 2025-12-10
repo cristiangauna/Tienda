@@ -4,6 +4,8 @@ import { login } from "../services/users";
 import { Link, Route, useNavigate } from "react-router";
 import { useAuth } from "../contexts/AuthContext";
 import styles from "./login.module.css";
+import Header from "../header.jsx";
+import styles from "../header.module.css";
 
 function Login() {
 
@@ -24,6 +26,8 @@ function Login() {
   
 
   return (
+  <div>
+  <Header/>  
   <div className={styles.container}>
     <h1>BIENVENIDO AL LOGIN DE TIENDA 🛒</h1>
     <h4>INGRESAR CUENTA:</h4>
@@ -49,6 +53,7 @@ function Login() {
     <h4>(Si no funciona la API ingresar con: Email: tienda@hotmail.com Contraseña: tienda123 )</h4>
 
   </div>
+  </div>  
   );
 }
 

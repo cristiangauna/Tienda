@@ -1,13 +1,9 @@
 import styles from "./header.module.css";
 import { User, Heart, ShoppingCart } from "lucide-react";
-import { useContext } from "react";
 import { Link } from "react-router";
-import { CartContext } from "./app";
 
 function Header(props) {
-    const [cart] = useContext(CartContext);
-    //const { cartCount } = props;
-
+    const { cartCount } = props;
     return (  
             //<h1 style={{ color: "blue", background: "red" }}>Info store</h1>  
             //Doble llave por que una es para el portal
@@ -16,51 +12,36 @@ function Header(props) {
         <header className={styles.header}>
             <div className={styles.container}>
                 <div className={styles.logo}>
-                    <h1 className={styles.title}>Tienda! 🛒</h1>
+                    <h1 className={styles.title}>Tienda!</h1>
                 </div>
 
                 <nav className={styles.nav}>
-                    <Link to="/inicio">
                     <a href="#" className={styles.navLink}>Inicio</a>
-                    </Link>
-
-                    <Link to="/productos">
                     <a href="#" className={styles.navLink}>Productos</a>
-                    </Link>
-
-                    <Link to="/categorias">
                     <a href="#" className={styles.navLink}>Categorías</a>
-                    </Link>
-                    
-                    <Link to="/ofertas">
                     <a href="#" className={styles.navLink}>Ofertas</a>
-                    </Link>
                 </nav>
 
                 <div className={styles.actions}>
-                    <Link to="/cuenta">
+                    <Link to="/login">
                         <button className={styles.iconButton} aria-label="Cuenta">
                             <User size={24} />
                             <span className={styles.iconLabel}>Cuenta</span>
                         </button>
                     </Link>    
 
-                    <Link to="/deseos">
                     <button className={styles.iconButton} aria-label="Lista de deseos">
                         <Heart size={24} />
                         <span className={styles.iconLabel}>Deseos</span>
                     </button>
-                    </Link>
 
-                    <Link to="/carrito">
                     <button className={styles.iconButton} aria-label="Carrito">
                         <div className={styles.cartIconWrapper}>
                             <ShoppingCart size={24} />
-                            <span className={styles.cartBadge}>{cart ? cart.length : 0}</span>
+                            <span className={styles.cartBadge}>{cartCount}</span>
                         </div>
                         <span className={styles.iconLabel}>Carrito</span>
                     </button>
-                    </Link>
                 </div>
             </div>
         </header>     

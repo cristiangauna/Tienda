@@ -15,7 +15,7 @@ import { Link } from "react-router";
 
 function Home() {
 
-    //const [totalProductInCart, setTotalProductsInCart] = useState(0);
+    const [totalProductInCart, setTotalProductsInCart] = useState(0);
     //const [products, setProducts] = useState([]);
     //const { products, error, isLoading } = useFetchData();
     //const { data:products, error, isLoading } = useFetchData(`${BASE_URL}/products`);
@@ -32,7 +32,7 @@ function Home() {
 
     return(  
         <div>
-            <Header/> {/*cartCount={totalProductInCart}/> */} 
+            <Header cartCount={totalProductInCart} />
             <main className={styles.main}>
             {/*<section className={styles.section}>
                 <h2 className={styles.sectionTitle}>Productos Destacados</h2>
@@ -63,7 +63,7 @@ function Home() {
                             price={"$" + product.price + 999}
                             //mensaje={product.descuentoMensaje}
                             esFavorito={true}
-                            //setTotalProductsInCart={setTotalProductsInCart}
+                            setTotalProductsInCart={setTotalProductsInCart}
                             />
                         </Link>
                     ))}  
@@ -86,7 +86,7 @@ function Home() {
                             //mensaje={product.descuentoMensaje}
                             descuento={true}
                             //esFavorito={product.esFavorito}
-                            //setTotalProductsInCart={setTotalProductsInCart}
+                            setTotalProductsInCart={setTotalProductsInCart}
                             />
                         </Link>
                     ))}

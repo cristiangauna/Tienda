@@ -50,23 +50,3 @@
     font-size: 1.5rem;
   }
 }
-
-.descuento {
-  color: red;
-  font-weight: bold;
-  border: 2px solid red;
-  padding: 5px 10px;   /* para que no quede pegado al texto */
-  border-radius: 6px;  /* opcional, hace las esquinas redondeadas */
-  display: block; /* para que el borde se ajuste al contenido */
-  text-align: center;
-}
-
-.añadido {
-  color: green;
-  font-weight: bold; /* Opcional */
-  border: 2px solid green;
-  padding: 5px 10px;   /* para que no quede pegado al texto */
-  border-radius: 6px;  /* opcional, hace las esquinas redondeadas */
-  display: block; /* para que el borde se ajuste al contenido */
-  text-align: center;
-}
